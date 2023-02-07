@@ -8,7 +8,7 @@ input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
             Player.move(1)
             basic.pause(100)
         } else {
-            basic.pause(100)
+            basic.pause(1)
         }
     }
 })
@@ -36,17 +36,27 @@ while (game.score() > 0) {
         Star.move(1)
         basic.pause(B)
         if (Star.isTouching(Player)) {
-            basic.setLedColor(0xff0000)
-            basic.pause(500)
             game.removeLife(1)
             Leben += -1
             Player.delete()
             Star.delete()
             Player = game.createSprite(2, 4)
-            basic.setLedColor(0x00ff00)
+            if (Leben == 2) {
+                basic.setLedColor(0xff8000)
+            } else if (Leben == 1) {
+                basic.setLedColor(0xff0000)
+            } else {
+            	
+            }
         }
         Star.delete()
-        B += -10
+        if (B > 200) {
+            B += -30
+        } else if (B < 200) {
+            B += -10
+        } else {
+        	
+        }
         game.addScore(1)
     } else {
     	
